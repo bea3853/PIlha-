@@ -1,0 +1,155 @@
+Algoritmo "PILHA"
+
+procedimento Inicializar
+inicio
+topo <- 0
+fimprocedimento
+
+//---------------------
+
+funcao PilhaVazia : logico
+inicio
+se topo = 0 entao
+   retorne verdadeiro
+senao
+   retorne falso
+fimse
+fimfuncao
+// -----------------------
+funcao PilhaCheia : logico
+inicio
+se topo = 4 entao
+   retorne verdadeiro
+senao
+   retorne falso
+fimse
+fimfuncao
+// -----------------------
+funcao Empilhar(elemento : inteiro) : logico
+inicio
+se PilhaCheia entao
+   retorne falso
+senao
+   topo <- topo + 1
+   pilha[topo] <- elemento
+   retorne verdadeiro
+fimse
+fimfuncao
+//--------------------------
+funcao Desempilhar : inteiro
+inicio
+se PilhaVazia entao
+   retorne -999
+senao
+   elemento <- pilha[topo]
+   pilha[topo] <- 0
+   topo <- topo - 1
+   retorne elemento
+fimse
+fimfuncao
+//-------------------------
+Var
+pilha : vetor[1..20] de inteiro
+topo : inteiro
+elemento : inteiro
+valor : inteiro
+i : inteiro
+comando : caracter
+qtd, x : inteiro
+
+Inicio
+
+
+
+qtd <- 0
+x <- 0
+
+Inicializar
+
+      escreval ("Utilize os sinais para movimentar a pilha")
+      escreval (" +    EMPIHAR")
+      escreval (" -    DESEMPILHAR")
+      escreval (" >    TOPO")
+      escreval (" <    IMPRIMIR")
+      escreval ("ESC  -  Sair")
+      
+       escreval("-----------------------------------------------")
+      escreval ("Utilize os números que representam as letras:")
+      //escreval (" 1 para A |  2 para B | 3 para C | 4 para D | 5 para V | 6 para K")
+      escreval ("")
+      escreva  ("")
+
+leia(comando)
+enquanto ((comando <> "x") ou (comando <> "X")) faca
+   se comando = "+" entao
+      se PilhaCheia entao
+         escreval("Pilha cheia")
+      senao
+         escreva("Digite o valor: ")
+         leia(valor)
+         se Empilhar(valor) entao
+            qtd <- (qtd + 1)
+            escreval("Valor empilhado!")
+            escreval("")
+         fimse
+      fimse
+   fimse
+
+
+   se comando = "-" entao
+      se PilhaVazia entao
+         escreval("Pilha vazia")
+      senao
+         valor <- Desempilhar
+         x <- valor
+         qtd <- (qtd - 1)
+         escreval("Valor desempilhado: ", valor)
+         escreval("")
+      fimse
+   fimse
+
+   se comando = ">" entao
+      se PilhaVazia entao
+         escreval("Pilha vazia")
+      senao
+         escreval("Topo: ", pilha[topo])
+      fimse
+   fimse
+
+
+   se comando = "<" entao
+      escreval("Pilha: ")
+      para i de 20 ate 1 passo -1 faca
+         escreval(pilha[i])
+      fimpara
+      escreval("Valor desempilhado: ", x)
+      escreval("")
+   fimse
+       escreval ("Utilize os sinais para movimentar a pilha")
+      escreval (" +    EMPIHAR")
+      escreval (" -    DESEMPILHAR")
+      escreval (" >    TOPO")
+      escreval (" <    IMPRIMIR")
+      escreval ("ESC  -  Sair")
+     escreval("-----------------------------------------------")
+      escreval ("Utilize os números que representam as letras:")
+      //escreval (" 1 para A |  2 para B | 3 para C | 4 para D | 5 para V | 6 para K")
+      escreval ("")
+      escreva  ("")
+   leia(comando)
+fimenquanto
+
+se topo = 0 entao
+   topo = 1
+fimse
+
+escreval("Pilha")
+para i de 20 ate 1 passo -1 faca
+   escreval(pilha[i])
+fimpara
+
+
+
+escreval("Empihados: ", qtd)
+
+Fimalgoritmo
